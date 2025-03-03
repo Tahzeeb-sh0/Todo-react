@@ -4,11 +4,11 @@ import { useTodo } from './TodoContext';
 function TodoItem({ todo }) {
 
     
-    const [isTodoEditable,setIsTodoEditable]=useState(false);
+    const [isTodoEditable,setIsTodoEditable]=useState();
     const [todoMsg,setTodoMsg] = useState(todo.todo)
-    const {deleteTodo,updateTodo,togalComplete} = useTodo()
+    const {deleteTodo,updateTodo,toggleComplete} = useTodo()
     const toggleCompleted = () =>{
-        togalComplete(todo.id)
+        toggleComplete(todo.id)
     }
     return (
         <div
@@ -38,7 +38,7 @@ function TodoItem({ todo }) {
                     if (todo.completed) return;
 
                     if (isTodoEditable) {
-                        editTodo();
+                        updateTodo();
                     } else setIsTodoEditable((prev) => !prev);
                 }}
                 disabled={todo.completed}
